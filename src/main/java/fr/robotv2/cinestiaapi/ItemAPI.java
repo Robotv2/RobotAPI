@@ -82,6 +82,11 @@ public class ItemAPI {
         return builder;
     }
 
+    public static boolean hasKey(ItemStack item, String keyStr, PersistentDataType type) {
+        NamespacedKey key = new NamespacedKey(robotAPI.INSTANCE, keyStr);
+        return item.getItemMeta().getPersistentDataContainer().has(key, type);
+    }
+
     public static class itemBuilder {
         private Material type;
         private int amount;

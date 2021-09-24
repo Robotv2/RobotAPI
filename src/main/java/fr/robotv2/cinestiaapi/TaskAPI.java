@@ -24,7 +24,7 @@ public class TaskAPI {
         return robotAPI.INSTANCE.getServer().getScheduler().runTaskTimer(robotAPI.INSTANCE, task, delay, timer);
     }
 
-    public static BukkitTask runTaskTimerAync(Runnable task, Long delay, Long timer) {
+    public static BukkitTask runTaskTimerAsync(Runnable task, Long delay, Long timer) {
         return robotAPI.INSTANCE.getServer().getScheduler().runTaskTimerAsynchronously(robotAPI.INSTANCE, task, delay, timer);
     }
 }

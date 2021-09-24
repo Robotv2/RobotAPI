@@ -15,15 +15,9 @@ public class Config {
     private File database;
     private FileConfiguration databaseConfig;
 
-    private boolean load = false;
-
     public Config(Plugin main, String name) {
         this.main = main;
         this.name = name;
-    }
-
-    public boolean isLoaded() {
-        return load;
     }
 
     public void setup() {
@@ -37,12 +31,9 @@ public class Config {
             }
         }
         databaseConfig = YamlConfiguration.loadConfiguration(database);
-        load = true;
     }
 
     public FileConfiguration get() {
-        if(isLoaded())
-            setup();
         return databaseConfig;
     }
 

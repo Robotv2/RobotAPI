@@ -1,10 +1,16 @@
 package fr.robotv2.cinestiaapi.animation;
 
+import fr.robotv2.cinestiaapi.TaskAPI;
 import fr.robotv2.cinestiaapi.animation.effects.ExpandingCircleEffect;
+import fr.robotv2.cinestiaapi.animation.effects.FireSpiral;
+import fr.robotv2.cinestiaapi.animation.effects.WaveParticle;
+import fr.robotv2.cinestiaapi.animation.effects.ashCone;
 import fr.robotv2.cinestiaapi.robotAPI;
 import org.bukkit.Location;
 import org.bukkit.Particle;
+import org.bukkit.World;
 import org.bukkit.entity.Player;
+import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.scheduler.BukkitTask;
 
 import java.util.HashMap;
@@ -34,6 +40,24 @@ public class AnimationAPI {
     public static void playExpandingEffectCircle(Player player, Long speed, Particle particle) {
         stopCurrent(player);
         BukkitTask task = new ExpandingCircleEffect(player, player.getLocation(), 1, 8, 0.5, particle).runTaskTimer(robotAPI.INSTANCE, 0, speed);
+        animations.put(player, task);
+    }
+
+    public void fireSpiral(Player player){
+        stopCurrent(player);
+        BukkitTask task = TaskAPI.runTaskTimerAsync(new FireSpiral(player), 0L, 1L);
+        animations.put(player, task);
+    }
+
+    public void waveParticle(Player player) {
+        stopCurrent(player);
+        BukkitTask task = TaskAPI.runTaskTimerAsync(new WaveParticle(player), 0L, 1L);
+        animations.put(player, task);
+    }
+
+    public void ashCone(Player player) {
+        stopCurrent(player);
+        BukkitTask task = TaskAPI.runTaskTimerAsync(new ashCone(player), 0L, 2L);
         animations.put(player, task);
     }
 }
