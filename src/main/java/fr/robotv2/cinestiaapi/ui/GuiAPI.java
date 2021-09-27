@@ -34,11 +34,11 @@ public class GuiAPI implements Listener {
                 });
     }
 
-    public void addMenu(GUI gui){
+    public static void addMenu(GUI gui){
         menus.put(gui.getClass(), gui);
     }
 
-    public void open(Player player, Class<? extends GUI> gClass){
+    public static void open(Player player, Class<? extends GUI> gClass){
         if(!menus.containsKey(gClass)) return;
 
         GUI menu = menus.get(gClass);
@@ -49,5 +49,4 @@ public class GuiAPI implements Listener {
             player.openInventory(inv);
         }, 2L);
     }
-
 }

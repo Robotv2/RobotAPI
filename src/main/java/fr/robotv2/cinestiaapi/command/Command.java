@@ -35,6 +35,10 @@ public abstract class Command implements CommandExecutor, TabCompleter {
     public abstract List<String> getSubsCommands();
     public abstract boolean enableTabCompleter();
 
+    private boolean hasPermission(CommandSender sender) {
+        return (getPermission() == null || sender.hasPermission(getPermission()));
+    }
+
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull org.bukkit.command.Command command, @NotNull String label, @NotNull String[] args) {
         if(!(sender instanceof org.bukkit.entity.Player)) {
@@ -54,7 +58,7 @@ public abstract class Command implements CommandExecutor, TabCompleter {
 
     @Override
     public List<String> onTabComplete(@NotNull CommandSender sender, org.bukkit.command.@NotNull Command command, @NotNull String alias, @NotNull String[] args) {
-        if(enableTabCompleter()) {
+        if(enableTabCompleter() && hasPermission(sender)) {
             if (args[0].length() == 0) {
                 return getSubsCommands();
             }

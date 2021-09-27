@@ -20,6 +20,8 @@ public class ChannelMessageEvent extends Event {
         this.input = input;
     }
 
+    public static HandlerList getHandlerList() { return handlers; }
+
     @Override
     public @NotNull HandlerList getHandlers() {
         return handlers;

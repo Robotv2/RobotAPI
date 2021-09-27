@@ -4,7 +4,7 @@ import java.util.HashMap;
 
 public class CooldownAPI {
 
-    private static HashMap<String, Cooldown> cooldowns = new HashMap<>();
+    private static final HashMap<String, Cooldown> cooldowns = new HashMap<>();
 
     public static Cooldown getCooldown(String name) {
         Cooldown cooldown = cooldowns.get(name);

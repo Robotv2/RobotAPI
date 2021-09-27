@@ -6,6 +6,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.enchantments.Enchantment;
+import org.bukkit.entity.Item;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
@@ -14,10 +15,8 @@ import org.bukkit.inventory.meta.SkullMeta;
 import org.bukkit.persistence.PersistentDataType;
 
 import java.lang.reflect.Field;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.UUID;
+import java.nio.charset.StandardCharsets;
+import java.util.*;
 
 import static fr.robotv2.cinestiaapi.color.ColorAPI.colorize;
 
@@ -27,6 +26,14 @@ public class ItemAPI {
 
     public static HashMap<String, ItemStack> getCachedHeads() {
         return heads;
+    }
+
+    public static String serialize(ItemStack item) {
+        return Arrays.toString(item.serializeAsBytes());
+    }
+
+    public static ItemStack deserialize(String item) {
+        return ItemStack.deserializeBytes(item.getBytes(StandardCharsets.UTF_8));
     }
 
     public static ItemStack getHead(UUID playerUUID) {
@@ -74,17 +81,17 @@ public class ItemAPI {
         return head;
     }
 
+    public static boolean hasKey(ItemStack item, String keyStr, PersistentDataType type) {
+        NamespacedKey key = new NamespacedKey(RobotAPI.INSTANCE, keyStr);
+        return item.getItemMeta().getPersistentDataContainer().has(key, type);
+    }
+
     public static itemBuilder toBuilder(ItemStack item) {
         itemBuilder builder = new itemBuilder();
         builder.setMeta(item.getItemMeta());
         builder.setType(item.getType());
         builder.setAmount(item.getAmount());
         return builder;
-    }
-
-    public static boolean hasKey(ItemStack item, String keyStr, PersistentDataType type) {
-        NamespacedKey key = new NamespacedKey(robotAPI.INSTANCE, keyStr);
-        return item.getItemMeta().getPersistentDataContainer().has(key, type);
     }
 
     public static class itemBuilder {
@@ -127,25 +134,25 @@ public class ItemAPI {
         }
 
         public itemBuilder setKey(String keyStr, String value) {
-            NamespacedKey key = new NamespacedKey(robotAPI.INSTANCE, keyStr);
+            NamespacedKey key = new NamespacedKey(RobotAPI.INSTANCE, keyStr);
             this.meta.getPersistentDataContainer().set(key, PersistentDataType.STRING, value);
             return this;
         }
 
         public itemBuilder setKey(String keyStr, double value) {
-            NamespacedKey key = new NamespacedKey(robotAPI.INSTANCE, keyStr);
+            NamespacedKey key = new NamespacedKey(RobotAPI.INSTANCE, keyStr);
             this.meta.getPersistentDataContainer().set(key, PersistentDataType.DOUBLE, value);
             return this;
         }
 
         public itemBuilder setKey(String keyStr, int value) {
-            NamespacedKey key = new NamespacedKey(robotAPI.INSTANCE, keyStr);
+            NamespacedKey key = new NamespacedKey(RobotAPI.INSTANCE, keyStr);
             this.meta.getPersistentDataContainer().set(key, PersistentDataType.INTEGER, value);
             return this;
         }
 
         public itemBuilder setKey(String keyStr, float value) {
-            NamespacedKey key = new NamespacedKey(robotAPI.INSTANCE, keyStr);
+            NamespacedKey key = new NamespacedKey(RobotAPI.INSTANCE, keyStr);
             this.meta.getPersistentDataContainer().set(key, PersistentDataType.FLOAT, value);
             return this;
         }

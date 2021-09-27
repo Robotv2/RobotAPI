@@ -16,12 +16,11 @@ public class ExpandingCircleEffect extends BukkitRunnable {
     private final Particle particle;
 
     private void playCircleEffect(Player player, Location loc, double radius) {
-        Particle.DustOptions dustOptions = new Particle.DustOptions(Color.YELLOW, 1.0F);
         for (double angle = 0; angle < 2 * Math.PI; angle += Math.PI / 36) {
             final double x = radius * Math.cos(angle);
             final double z = radius * Math.sin(angle);
             loc.add(x, 0, z);
-            player.getWorld().spawnParticle(particle, loc.getX(), loc.getY(), loc.getZ(), 1, dustOptions);
+            player.getWorld().spawnParticle(particle, loc.getX(), loc.getY(), loc.getZ(), 1);
             loc.subtract(x, 0, z);
         }
     }

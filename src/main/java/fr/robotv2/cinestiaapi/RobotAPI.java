@@ -4,9 +4,9 @@ import fr.robotv2.cinestiaapi.ui.GuiAPI;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
-public final class robotAPI extends JavaPlugin {
+public final class RobotAPI extends JavaPlugin {
 
-    public static robotAPI INSTANCE;
+    public static RobotAPI INSTANCE;
 
     @Override
     public void onEnable() {
