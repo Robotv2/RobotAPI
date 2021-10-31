@@ -9,6 +9,7 @@ public class TimeAPI {
     public static Long getInstant() {
         return Instant.now().toEpochMilli();
     }
+
     public static LocalDateTime toLocalDateTime(Long instant) {
         return Instant.ofEpochMilli(instant).atZone(ZoneId.systemDefault()).toLocalDateTime();
     }

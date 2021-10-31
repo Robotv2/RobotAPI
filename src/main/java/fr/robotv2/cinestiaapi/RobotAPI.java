@@ -23,4 +23,8 @@ public final class RobotAPI extends JavaPlugin {
         PluginManager pm = getServer().getPluginManager();
         pm.registerEvents(new GuiAPI(), this);
     }
+
+    public static RobotAPI getInstance() {
+        return INSTANCE;
+    }
 }

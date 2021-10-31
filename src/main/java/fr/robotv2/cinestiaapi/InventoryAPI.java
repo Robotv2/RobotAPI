@@ -18,7 +18,7 @@ public class InventoryAPI {
         player.openInventory(inventory);
     }
 
-    public static class inventoryBuilder {
+    public static class InventoryBuilder {
 
         private InventoryHolder holder = null;
         private InventoryType type;

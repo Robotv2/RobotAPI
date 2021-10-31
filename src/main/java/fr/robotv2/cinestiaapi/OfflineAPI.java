@@ -1,24 +1,23 @@
 package fr.robotv2.cinestiaapi;
 
 import org.bukkit.Bukkit;
+import org.bukkit.OfflinePlayer;
 
 import java.util.UUID;
 
 public class OfflineAPI {
 
-    public static UUID getUUID(String playerName) {
-        try {
-            return Bukkit.getOfflinePlayer(playerName).getUniqueId();
-        }  catch (NullPointerException e) {
-            return null;
+    public static UUID getUUID(String playerNAME, boolean force) {
+        if(force)
+            return Bukkit.getOfflinePlayer(playerNAME).getUniqueId();
+        else {
+            OfflinePlayer offlinePlayer = Bukkit.getOfflinePlayerIfCached(playerNAME);
+            if(offlinePlayer == null) return null;
+            return offlinePlayer.getUniqueId();
         }
     }
 
     public static String getName(UUID playerUUID) {
-        try {
-            return Bukkit.getOfflinePlayer(playerUUID).getName();
-        } catch (NullPointerException e) {
-            return null;
-        }
+        return Bukkit.getOfflinePlayer(playerUUID).getName();
     }
 }
