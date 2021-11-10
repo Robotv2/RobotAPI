@@ -26,9 +26,8 @@ public class FillAPI {
     }
 
     public static ItemStack getEmpty() {
-        if(empty == null) {
+        if(empty == null)
             empty = getDefaultEmpty();
-        }
         return empty;
     }
 

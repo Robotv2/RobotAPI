@@ -2,7 +2,6 @@ package fr.robotv2.cinestiaapi.ui;
 
 import fr.robotv2.cinestiaapi.RobotAPI;
 import fr.robotv2.cinestiaapi.TaskAPI;
-import it.unimi.dsi.fastutil.Hash;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -11,12 +10,9 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryCloseEvent;
 import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.inventory.Inventory;
-import org.bukkit.inventory.InventoryHolder;
-import org.bukkit.inventory.InventoryView;
 import org.bukkit.inventory.ItemStack;
 
 import java.util.HashMap;
-import java.util.Map;
 import java.util.UUID;
 
 import static fr.robotv2.cinestiaapi.color.ColorAPI.colorize;
@@ -40,6 +36,8 @@ public class GuiAPI implements Listener {
         menu.onClick(player, e.getInventory(), item, e.getRawSlot());
     }
 
+
+
     @EventHandler
     public void onClose(InventoryCloseEvent e) {
         Player player = (Player) e.getPlayer();
@@ -51,10 +49,8 @@ public class GuiAPI implements Listener {
             menu.onClose(player, e);
 
             TaskAPI.runTaskLater(() -> {
-
                 if(player.getOpenInventory().getType() != InventoryType.CHEST)
                     players.remove(playerUUID);
-
             }, 3L);
         }
     }

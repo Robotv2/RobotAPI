@@ -2,15 +2,15 @@ package fr.robotv2.cinestiaapi.animation.effects;
 
 import org.bukkit.Location;
 import org.bukkit.Particle;
-import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.entity.Player;
+import org.bukkit.scheduler.BukkitRunnable;
 
 public class FireSpiral extends BukkitRunnable {
 
-    private Player player;
-    private Location loc;
+    private final Player player;
+    private final Location loc;
     private double t = 0;
-    private double r = 1;
+    private final double r = 1;
 
     public FireSpiral(Player player) {
         this.player = player;

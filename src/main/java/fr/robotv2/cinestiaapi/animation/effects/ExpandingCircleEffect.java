@@ -1,6 +1,5 @@
 package fr.robotv2.cinestiaapi.animation.effects;
 
-import org.bukkit.Color;
 import org.bukkit.Location;
 import org.bukkit.Particle;
 import org.bukkit.entity.Player;

@@ -5,8 +5,8 @@ import org.bukkit.plugin.java.JavaPlugin;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static fr.robotv2.cinestiaapi.color.ColorAPI.colorize;
 
@@ -59,19 +59,10 @@ public abstract class Command implements CommandExecutor, TabCompleter {
     @Override
     public List<String> onTabComplete(@NotNull CommandSender sender, org.bukkit.command.@NotNull Command command, @NotNull String alias, @NotNull String[] args) {
         if(enableTabCompleter() && hasPermission(sender)) {
-            if (args[0].length() == 0) {
+            if (args[0].length() == 0)
                 return getSubsCommands();
-            }
-            if (args.length == 1) {
-                List<String> result = new ArrayList<>();
-                for (int i = 0; i < getSubsCommands().size(); ++i) {
-                    if (getSubsCommands().get(i).startsWith(args[0])) {
-                        result.add(getSubsCommands().get(i));
-                    }
-                }
-                return result;
-            }
-            return null;
+            if (args.length == 1)
+                return getSubsCommands().stream().filter(arg -> arg.startsWith(args[0].toLowerCase())).collect(Collectors.toList());
         }
         return null;
     }

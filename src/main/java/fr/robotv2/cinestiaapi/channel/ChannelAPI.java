@@ -1,7 +1,6 @@
 package fr.robotv2.cinestiaapi.channel;
 
 import com.google.common.collect.Iterables;
-import com.google.common.collect.Iterators;
 import com.google.common.io.ByteArrayDataOutput;
 import fr.robotv2.cinestiaapi.RobotAPI;
 import org.bukkit.Bukkit;

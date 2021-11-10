@@ -1,11 +1,11 @@
 package fr.robotv2.cinestiaapi.animation;
 
+import fr.robotv2.cinestiaapi.RobotAPI;
 import fr.robotv2.cinestiaapi.TaskAPI;
 import fr.robotv2.cinestiaapi.animation.effects.ExpandingCircleEffect;
 import fr.robotv2.cinestiaapi.animation.effects.FireSpiral;
 import fr.robotv2.cinestiaapi.animation.effects.WaveParticle;
 import fr.robotv2.cinestiaapi.animation.effects.ashCone;
-import fr.robotv2.cinestiaapi.RobotAPI;
 import org.bukkit.Location;
 import org.bukkit.Particle;
 import org.bukkit.entity.Player;
