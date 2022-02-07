@@ -12,7 +12,8 @@ public class OfflineAPI {
             return Bukkit.getOfflinePlayer(playerNAME).getUniqueId();
         else {
             OfflinePlayer offlinePlayer = Bukkit.getOfflinePlayerIfCached(playerNAME);
-            if(offlinePlayer == null) return null;
+            if(offlinePlayer == null)
+                return null;
             return offlinePlayer.getUniqueId();
         }
     }

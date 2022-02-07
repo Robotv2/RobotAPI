@@ -11,7 +11,7 @@ public class ChannelListeners implements PluginMessageListener {
     @Override
     public void onPluginMessageReceived(@NotNull String channel, @NotNull Player player, byte[] message) {
         if(ChannelAPI.getChannels().contains(channel)) {
-            RobotAPI.INSTANCE.getServer().getPluginManager()
+            RobotAPI.getInstance().getServer().getPluginManager()
                     .callEvent(new ChannelMessageEvent(channel, player, ByteStreams.newDataInput(message)));
         }
     }

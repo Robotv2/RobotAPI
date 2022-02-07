@@ -36,8 +36,6 @@ public class GuiAPI implements Listener {
         menu.onClick(player, e.getInventory(), item, e.getRawSlot());
     }
 
-
-
     @EventHandler
     public void onClose(InventoryCloseEvent e) {
         Player player = (Player) e.getPlayer();

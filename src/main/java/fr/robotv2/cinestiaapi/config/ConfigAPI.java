@@ -12,7 +12,7 @@ public class ConfigAPI {
 
     public static Config getConfig(String name) {
         if(plugin == null) {
-            RobotAPI.INSTANCE.getLogger().warning("You can't access this config as the configAPI hasn't been init yet. Use the method: ConfigAPI.init() before accessing any config");
+            RobotAPI.getInstance().getLogger().warning("You can't access this config as the configAPI hasn't been init yet. Use the method: ConfigAPI.init() before accessing any config");
         }
         Config config = configs.get(name);
         if(config == null) {

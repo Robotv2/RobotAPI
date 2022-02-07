@@ -41,6 +41,6 @@ public class ChannelAPI {
 
     public static void sendMessage(String channel, ByteArrayDataOutput out) {
         if(getLast() != null)
-            getLast().sendPluginMessage(RobotAPI.INSTANCE, channel, out.toByteArray());
+            getLast().sendPluginMessage(RobotAPI.getInstance(), channel, out.toByteArray());
     }
 }

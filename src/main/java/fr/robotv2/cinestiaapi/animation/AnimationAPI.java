@@ -37,7 +37,7 @@ public class AnimationAPI {
 
     public static void playExpandingEffectCircle(Player player, Long speed, Particle particle) {
         stopCurrent(player);
-        BukkitTask task = new ExpandingCircleEffect(player, player.getLocation(), 1, 8, 0.5, particle).runTaskTimer(RobotAPI.INSTANCE, 0, speed);
+        BukkitTask task = new ExpandingCircleEffect(player, player.getLocation(), 1, 8, 0.5, particle).runTaskTimer(RobotAPI.getInstance(), 0, speed);
         animations.put(player, task);
     }
 

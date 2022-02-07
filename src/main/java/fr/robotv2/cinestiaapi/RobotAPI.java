@@ -1,5 +1,7 @@
 package fr.robotv2.cinestiaapi;
 
+import fr.robotv2.cinestiaapi.holo.Hologram;
+import fr.robotv2.cinestiaapi.holo.HologramAPI;
 import fr.robotv2.cinestiaapi.ui.GuiAPI;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -17,6 +19,10 @@ public final class RobotAPI extends JavaPlugin {
     @Override
     public void onDisable() {
         INSTANCE = null;
+        HologramAPI.getHolograms()
+                .stream()
+                .filter(hologram -> !hologram.isSaved())
+                .forEach(Hologram::delete);
     }
 
     public void registerListeners() {

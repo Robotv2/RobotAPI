@@ -28,6 +28,7 @@ public class NumberAPI {
         return formatted(value.doubleValue());
     }
 
+
     public static String formatted(Double value) {
         if(format == null)
             format = new DecimalFormat("###,##");
