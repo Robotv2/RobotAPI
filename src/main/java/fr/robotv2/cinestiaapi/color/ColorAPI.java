@@ -12,7 +12,7 @@ public class ColorAPI {
         return ChatColor.translateAlternateColorCodes('&', message);
     }
 
-    public static String uncolorize(String message) {
+    public static String stripColor(String message) {
         return ChatColor.stripColor(message);
     }
 
@@ -20,7 +20,7 @@ public class ColorAPI {
         return messages.stream().map(ColorAPI::colorize).collect(Collectors.toList());
     }
 
-    public static List<String> uncolorize(Collection<String> messages) {
-        return messages.stream().map(ColorAPI::uncolorize).collect(Collectors.toList());
+    public static List<String> stripColor(Collection<String> messages) {
+        return messages.stream().map(ColorAPI::stripColor).collect(Collectors.toList());
     }
 }

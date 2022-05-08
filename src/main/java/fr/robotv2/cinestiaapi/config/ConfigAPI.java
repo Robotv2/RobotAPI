@@ -1,9 +1,9 @@
 package fr.robotv2.cinestiaapi.config;
 
-import fr.robotv2.cinestiaapi.RobotAPI;
 import org.bukkit.plugin.Plugin;
 
 import java.util.HashMap;
+import java.util.Objects;
 
 public class ConfigAPI {
 
@@ -11,9 +11,7 @@ public class ConfigAPI {
     private static final HashMap<String, Config> configs = new HashMap<>();
 
     public static Config getConfig(String name) {
-        if(plugin == null) {
-            RobotAPI.getInstance().getLogger().warning("You can't access this config as the configAPI hasn't been init yet. Use the method: ConfigAPI.init() before accessing any config");
-        }
+        Objects.requireNonNull(plugin);
         Config config = configs.get(name);
         if(config == null) {
             config = new Config(ConfigAPI.plugin, name);

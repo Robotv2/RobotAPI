@@ -1,10 +1,8 @@
 package fr.robotv2.cinestiaapi.cooldown;
 
-import java.time.Instant;
-
 public class Cooldown {
 
-    private String name;
+    private final String name;
     private Long instant;
     private Integer seconds;
 
@@ -17,19 +15,19 @@ public class Cooldown {
     }
 
     public void setCooldown(int seconds) {
-        this.instant = Instant.now().toEpochMilli();
+        this.instant = System.currentTimeMillis();
         this.seconds = seconds;
     }
 
     public Long getRemainingCooldown() {
         if(instant == null) return 0L;
-        return ((Instant.now().toEpochMilli() - instant) / 1000);
+        return ((System.currentTimeMillis() - instant) / 1000);
     }
 
     public boolean isCooldownOver() {
         if(instant == null) return true;
         if(seconds == null) return true;
-        return ((Instant.now().toEpochMilli() - instant) / 1000) > seconds;
+        return ((System.currentTimeMillis() - instant) / 1000) > seconds;
     }
 
     public void clearCooldown() {

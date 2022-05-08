@@ -4,13 +4,19 @@ import com.google.common.base.Strings;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.World;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.LinkedList;
 import java.util.List;
 
 public class LocationAPI {
 
-    public static String serialize(Location input) {
+    public static String serialize(@Nullable Location input) {
+
+        if(input == null) {
+            return null;
+        }
+
         double X = input.getX();
         double Y = input.getY();
         double Z = input.getZ();
@@ -22,9 +28,16 @@ public class LocationAPI {
     }
 
     public static Location deserialize(String input) {
-        if(Strings.isNullOrEmpty(input)) return null;
+
+        if(Strings.isNullOrEmpty(input)) {
+            return null;
+        }
+
         String[] args = input.split(";");
-        if(args.length != 6) return null;
+
+        if(args.length != 6) {
+            return null;
+        }
 
         double X = Double.parseDouble(args[0]);
         double Y = Double.parseDouble(args[1]);

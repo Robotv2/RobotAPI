@@ -17,7 +17,7 @@ public class ChannelAPI {
         return channels;
     }
 
-    public static Player getLast() {
+    private static Player getLast() {
         try {
             return Iterables.getLast(Bukkit.getOnlinePlayers());
         } catch (NoSuchElementException e) {
@@ -27,20 +27,21 @@ public class ChannelAPI {
 
     public static void register(String channel) {
         if(channels.contains(channel)) return;
-        RobotAPI.INSTANCE.getServer().getMessenger().registerIncomingPluginChannel(RobotAPI.INSTANCE, channel, new ChannelListeners());
-        RobotAPI.INSTANCE.getServer().getMessenger().registerOutgoingPluginChannel(RobotAPI.INSTANCE, channel);
+        RobotAPI.get().getServer().getMessenger().registerIncomingPluginChannel(RobotAPI.get(), channel, new ChannelListeners());
+        RobotAPI.get().getServer().getMessenger().registerOutgoingPluginChannel(RobotAPI.get(), channel);
         channels.add(channel);
     }
 
     public static void unregister(String channel) {
         if(!channels.contains(channel)) return;
         channels.remove(channel);
-        RobotAPI.INSTANCE.getServer().getMessenger().unregisterIncomingPluginChannel(RobotAPI.INSTANCE, channel, new ChannelListeners());
-        RobotAPI.INSTANCE.getServer().getMessenger().registerOutgoingPluginChannel(RobotAPI.INSTANCE, channel);
+        RobotAPI.get().getServer().getMessenger().unregisterIncomingPluginChannel(RobotAPI.get(), channel, new ChannelListeners());
+        RobotAPI.get().getServer().getMessenger().registerOutgoingPluginChannel(RobotAPI.get(), channel);
     }
 
     public static void sendMessage(String channel, ByteArrayDataOutput out) {
-        if(getLast() != null)
-            getLast().sendPluginMessage(RobotAPI.getInstance(), channel, out.toByteArray());
+        if(getLast() != null) {
+            getLast().sendPluginMessage(RobotAPI.get(), channel, out.toByteArray());
+        }
     }
 }

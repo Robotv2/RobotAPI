@@ -1,36 +1,26 @@
 package fr.robotv2.cinestiaapi;
 
-import fr.robotv2.cinestiaapi.holo.Hologram;
-import fr.robotv2.cinestiaapi.holo.HologramAPI;
+import fr.robotv2.cinestiaapi.config.ConfigAPI;
 import fr.robotv2.cinestiaapi.ui.GuiAPI;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
-public final class RobotAPI extends JavaPlugin {
+public final class RobotAPI {
 
-    public static RobotAPI INSTANCE;
+    public static JavaPlugin instance;
 
-    @Override
-    public void onEnable() {
-        INSTANCE = this;
+    public static void initialize(JavaPlugin plugin) {
+        instance = plugin;
+        ConfigAPI.init(plugin);
         registerListeners();
     }
 
-    @Override
-    public void onDisable() {
-        INSTANCE = null;
-        HologramAPI.getHolograms()
-                .stream()
-                .filter(hologram -> !hologram.isSaved())
-                .forEach(Hologram::delete);
+    private static void registerListeners() {
+        PluginManager pm = instance.getServer().getPluginManager();
+        pm.registerEvents(new GuiAPI(), instance);
     }
 
-    public void registerListeners() {
-        PluginManager pm = getServer().getPluginManager();
-        pm.registerEvents(new GuiAPI(), this);
-    }
-
-    public static RobotAPI getInstance() {
-        return INSTANCE;
+    public static JavaPlugin get() {
+        return instance;
     }
 }

@@ -54,8 +54,9 @@ public class ItemAPI {
     }
 
     public static ItemStack createSkull(String url) {
-        if(heads.containsKey(url))
+        if(heads.containsKey(url)) {
             return heads.get(url);
+        }
 
         ItemStack head = new ItemStack(Material.PLAYER_HEAD);
         if (url.isEmpty()) return head;
@@ -85,12 +86,12 @@ public class ItemAPI {
     }
 
     public static boolean hasKey(ItemStack item, String keyStr, PersistentDataType type) {
-        NamespacedKey key = new NamespacedKey(RobotAPI.INSTANCE, keyStr);
+        NamespacedKey key = new NamespacedKey(RobotAPI.get(), keyStr);
         return item.getItemMeta().getPersistentDataContainer().has(key, type);
     }
 
     public static Object getKeyValue(ItemStack item, String keyStr, PersistentDataType type) {
-        NamespacedKey key = new NamespacedKey(RobotAPI.INSTANCE, keyStr);
+        NamespacedKey key = new NamespacedKey(RobotAPI.get(), keyStr);
         return item.getItemMeta().getPersistentDataContainer().get(key, type);
     }
 
@@ -125,25 +126,25 @@ public class ItemAPI {
         }
 
         public ItemBuilder setKey(String keyStr, String value) {
-            NamespacedKey key = new NamespacedKey(RobotAPI.INSTANCE, keyStr);
+            NamespacedKey key = new NamespacedKey(RobotAPI.get(), keyStr);
             this.meta.getPersistentDataContainer().set(key, PersistentDataType.STRING, value);
             return this;
         }
 
         public ItemBuilder setKey(String keyStr, double value) {
-            NamespacedKey key = new NamespacedKey(RobotAPI.INSTANCE, keyStr);
+            NamespacedKey key = new NamespacedKey(RobotAPI.get(), keyStr);
             this.meta.getPersistentDataContainer().set(key, PersistentDataType.DOUBLE, value);
             return this;
         }
 
         public ItemBuilder setKey(String keyStr, int value) {
-            NamespacedKey key = new NamespacedKey(RobotAPI.INSTANCE, keyStr);
+            NamespacedKey key = new NamespacedKey(RobotAPI.get(), keyStr);
             this.meta.getPersistentDataContainer().set(key, PersistentDataType.INTEGER, value);
             return this;
         }
 
         public ItemBuilder setKey(String keyStr, float value) {
-            NamespacedKey key = new NamespacedKey(RobotAPI.INSTANCE, keyStr);
+            NamespacedKey key = new NamespacedKey(RobotAPI.get(), keyStr);
             this.meta.getPersistentDataContainer().set(key, PersistentDataType.FLOAT, value);
             return this;
         }

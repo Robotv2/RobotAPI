@@ -21,6 +21,7 @@ public class Config {
     public Config(Plugin main, String name) {
         this.main = main;
         this.name = name;
+        this.setup();
     }
 
     public void setup() {
