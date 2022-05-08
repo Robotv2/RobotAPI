@@ -1,6 +1,7 @@
 package fr.robotv2.cinestiaapi.color;
 
 import org.bukkit.ChatColor;
+import org.bukkit.command.CommandSender;
 
 import java.util.Collection;
 import java.util.List;
@@ -22,5 +23,9 @@ public class ColorAPI {
 
     public static List<String> stripColor(Collection<String> messages) {
         return messages.stream().map(ColorAPI::stripColor).collect(Collectors.toList());
+    }
+
+    public static void sendMessage(CommandSender sender, String message) {
+        sender.sendMessage(colorize(message));
     }
 }
